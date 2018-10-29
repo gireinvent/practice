@@ -1,8 +1,11 @@
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -52,21 +55,51 @@ public class sampleTest {
         String webContext = getWebContext(driver);
         driver.context("CHROMIUM");
 
-        driver.get("https://t3-pmic-ac.cs67.force.com/agency/login");
-        WebElement username = driver.findElement(By.id("username"));
-        boolean eleSelected = username.isDisplayed();
-        if (eleSelected = true)
-            username.sendKeys("a155860@pmic.com.t3");
+        //wait
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+       // URL remoteUrl = new URL("https://t1-pmic-ac.cs94.force.com/agency/s/login");
+        driver.get("https://t1-pmic-ac.cs94.force.com/agency/s/login");
+        Thread.sleep(5000);
+        By username = MobileBy.id("61:2;a");
+        By pwd =  MobileBy.id("73:2;a");
+      //  By btnLogin =  MobileBy.("81:2;a");
+        WebElement btnLogin =  driver.findElementByTagName("button");
+
+     //   WebElement btnLogin = driver.findElement(By.tagName(""))
+//        btnLogin.click();
+        //MobileElement username = (MobileElement) driver.findElementById("61:2;a");
+         //WebElement username = driver.findElement(By.id("61:2;a"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(username)).sendKeys("a155860@pmic.com.t1");
+        wait.until(ExpectedConditions.presenceOfElementLocated(pwd)).sendKeys("Passwrd3");
+        btnLogin.click();
+//        List<WebElement> els = driver.findElements(By.xpath(".//input"));
+//        System.out.println(els.size());
+//        for (int i=0;i<els.size();i++) {
+//            if ( els.get(i).getTagName().equals("input"))
+//                System.out.println( els.get(i).getText());
+//            //System.out.println( els.get(i).getTagName().equals("input"));
+//            //System.out.println( els.get(i).getCssValue());
+//        }
+
+
+
+
+
+//        boolean eleSelected = username.isDisplayed();
+//        if (eleSelected = true)
+//            username.sendKeys("a155860@pmic.com.t1");
 
         //password
-        WebElement pwd = driver.findElement(By.id("password"));
-        pwd.sendKeys("Passwrd1");
+      //  WebElement pwd = driver.findElement(By.id("73:2;a"));
+//       MobileElement pwd = (MobileElement) driver.findElementById("73:2;a");
+//       pwd.sendKeys("Passwrd3");
 
         Thread.sleep(100);
 
         //Login
-        WebElement btnLogin = driver.findElement(By.id("Login"));
-        btnLogin.click();
+//        WebElement btnLogin = driver.findElement(By.id("Login"));
+//        btnLogin.click();
 
 //        List contextNames = driver.getContextHandles();
 //        for (string contextName : contextNames) {
@@ -81,8 +114,11 @@ public class sampleTest {
             List<WebElement> list =  driver.findElements(By.name("selectedViewName"));
         //list.get(0).findElements(By.)
             //list.selectByVisibleText("Great Plains Lead Queue");
-            System.out.println(list.size());
+
             list.get(0).click();
+
+        List<WebElement> optionslist =  driver.findElements(By.tagName("option"));
+        System.out.println(optionslist.size());
 
      //   List<WebElement> els = driver.findElements(By.linkText("Leads"));
       //  System.out.println(els.size());
