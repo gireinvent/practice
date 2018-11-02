@@ -1,16 +1,11 @@
 package com.salesforce.Desktop;
 
 import com.salesforce.commonlibraries.commonlibrary;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.File;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -28,13 +23,13 @@ public class Login
         ChromeDriver driver=new ChromeDriver();
         //WebDriver driver = new RemoteWebDriver("http://localhost:9515", DesiredCapabilities.chrome());
         driver.get(URL);
+        Log.info("Test");
         commonlibrary cl = new commonlibrary();
-        Workbook myFirstWbook = Workbook.getWorkbook(new File("C:\\Users\\a152330\\IdeaProjects\\practice\\src\\test\\java\\com\\salesforce\\Desktop\\Common Testdata.xls"));
-        Sheet sheet = myFirstWbook.getSheet(0);
-        Cell cell1 = sheet.getCell(1, 17);
-
-        System.out.println(cell1.getContents());
-        cl.login("a155860@pmic.com.t1", "Passwrd3", driver);
+//        Workbook myFirstWbook = Workbook.getWorkbook(new File("G:\\Proj\\WR\\N400\\N491B Service Desk\\Testing\\UFT_SalesLeads\\Common Testdata.xls"));
+//        Sheet sheet = myFirstWbook.getSheet(0);
+        String username = cl.getUserName("DOLogin_T1_SANDYHIGDON");
+        System.out.println(username);
+        cl.login(username, "Passwrd3", driver);
         cl.SelectLeadQueue(driver);
         // WebDriverWait wait = new WebDriverWait(driver, 10);
         //Search("N830000026", driver);
